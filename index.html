@@ -248,10 +248,39 @@ function closeNav(){document.getElementById('navOverlay').classList.remove('open
 window.addEventListener('scroll',()=>{document.querySelector('.hdr').classList.toggle('scrolled',scrollY>50)});
 const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})},{threshold:.12});
 document.querySelectorAll('.srv-card,.gal-item,.abt-vis,.abt-txt,.cnt-info,.cnt-form-w').forEach((el,i)=>{el.style.transitionDelay=(i%6*0.08)+'s';io.observe(el);});
-function sendForm(e){e.preventDefault();const b=document.getElementById('sbtn');b.textContent='¡Enviado! ✅';b.disabled=true;setTimeout(()=>{b.textContent='Enviar solicitud';b.disabled=false;e.target.reset();},3000);}
-document.querySelectorAll('.srv-card,.gal-item,.abt-vis,.abt-txt,.cnt-info,.cnt-form-w').forEach((el,i)=>{el.style.transitionDelay=(i%6*0.08)+'s';io.observe(el);});
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
 
-function sendForm(event){
+function toggleNav() {
+  const o = document.getElementById('navOverlay'),
+        b = document.getElementById('hbtn');
+  o.classList.toggle('open');
+  b.classList.toggle('open');
+  document.body.style.overflow = o.classList.contains('open') ? 'hidden' : '';
+}
+
+function closeNav() {
+  document.getElementById('navOverlay').classList.remove('open');
+  document.getElementById('hbtn').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+window.addEventListener('scroll', () => {
+  document.querySelector('.hdr').classList.toggle('scrolled', scrollY > 50);
+});
+
+const io = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('vis');
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.srv-card,.gal-item,.abt-vis,.abt-txt,.cnt-info,.cnt-form-w').forEach((el, i) => {
+  el.style.transitionDelay = (i % 6 * 0.08) + 's';
+  io.observe(el);
+});
+
+function sendForm(event) {
   event.preventDefault();
 
   const form = event.target;
