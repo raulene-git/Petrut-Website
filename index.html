@@ -249,6 +249,31 @@ window.addEventListener('scroll',()=>{document.querySelector('.hdr').classList.t
 const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})},{threshold:.12});
 document.querySelectorAll('.srv-card,.gal-item,.abt-vis,.abt-txt,.cnt-info,.cnt-form-w').forEach((el,i)=>{el.style.transitionDelay=(i%6*0.08)+'s';io.observe(el);});
 function sendForm(e){e.preventDefault();const b=document.getElementById('sbtn');b.textContent='¡Enviado! ✅';b.disabled=true;setTimeout(()=>{b.textContent='Enviar solicitud';b.disabled=false;e.target.reset();},3000);}
+document.querySelectorAll('.srv-card,.gal-item,.abt-vis,.abt-txt,.cnt-info,.cnt-form-w').forEach((el,i)=>{el.style.transitionDelay=(i%6*0.08)+'s';io.observe(el);});
+
+function sendForm(event){
+  event.preventDefault();
+
+  const form = event.target;
+
+  const nombre = form.querySelector('[name="nombre"]').value;
+  const telefono = form.querySelector('[name="telefono"]').value;
+  const email = form.querySelector('[name="email"]').value;
+  const servicio = form.querySelector('[name="servicio"]').value;
+  const mensaje = form.querySelector('[name="mensaje"]').value;
+
+  const texto =
+    `Hola, me gustaría solicitar un presupuesto.\n\n` +
+    `Nombre: ${nombre}\n` +
+    `Teléfono: ${telefono}\n` +
+    `Email: ${email}\n` +
+    `Servicio: ${servicio}\n` +
+    `Mensaje: ${mensaje}`;
+
+  const url = `https://wa.me/34654771123?text=${encodeURIComponent(texto)}`;
+
+  window.open(url, '_blank');
+}
 </script>
 </body>
 </html>
