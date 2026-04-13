@@ -4,85 +4,251 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Petrut Ciutuza – Jardinería y Servicios Integrales</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet"/>
-
 <style>
-/* KEEPING YOUR ORIGINAL CSS EXACTLY */
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--g1:#1a3a0a;--g2:#2e6016;--g3:#4a8c25;--g5:#a8d878;--g7:#eef8e4;--cream:#f7faf2;--white:#fff;--text:#1a2e0a;--textm:#3a5820;--textl:#6a8850;--shadow:0 4px 24px rgba(30,80,10,.13);--shadowl:0 2px 12px rgba(30,80,10,.09);--r:14px;--rs:8px;--trans:.25s cubic-bezier(.4,0,.2,1);--ff:'Playfair Display',Georgia,serif;--fb:'Nunito',sans-serif}
-html{scroll-behavior:smooth}
-body{font-family:var(--fb);color:var(--text);background:var(--white);line-height:1.7;overflow-x:hidden}
+html{scroll-behavior:smooth}body{font-family:var(--fb);color:var(--text);background:var(--white);line-height:1.7;overflow-x:hidden}
 a{text-decoration:none;color:inherit}ul{list-style:none}
 .wrap{width:min(1140px,92vw);margin:0 auto}.sec{padding:88px 0}
 .lbl{font-size:.75rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--g3);margin-bottom:10px}
 .stitle{font-family:var(--ff);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:900;color:var(--g1);line-height:1.18;margin-bottom:14px}
 .sdesc{color:var(--textm);font-size:1rem;max-width:540px;margin-bottom:44px}
-
-/* KEEP ALL YOUR ORIGINAL CSS HERE (unchanged) */
-/* (I have not removed any responsive rules) */
-
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;border-radius:50px;font-family:var(--fb);font-size:.92rem;font-weight:700;cursor:pointer;transition:var(--trans);border:2px solid transparent;white-space:nowrap}
+.btn-p{background:var(--g2);color:var(--white);box-shadow:0 4px 18px rgba(46,96,22,.35)}.btn-p:hover{background:var(--g1);transform:translateY(-2px)}
+.btn-o{border-color:rgba(255,255,255,.7);color:var(--white)}.btn-o:hover{background:rgba(255,255,255,.15);border-color:var(--white)}
+.btn-w{background:#25d366;color:var(--white)}.btn-w:hover{background:#1abe5c;transform:translateY(-2px)}
+.fw{width:100%;justify-content:center}
+.hdr{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 0;transition:var(--trans)}
+.hdr.scrolled{background:rgba(255,255,255,.97);padding:10px 0;box-shadow:0 2px 16px rgba(30,80,10,.10)}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-logo{width:54px;height:54px;border-radius:50%;object-fit:contain;background:var(--white);box-shadow:var(--shadowl);transition:var(--trans)}
+.hdr.scrolled .brand-logo{width:44px;height:44px}
+.brand-name{font-family:var(--ff);font-size:1.25rem;font-weight:900;color:var(--white);line-height:1.1;transition:var(--trans)}
+.hdr.scrolled .brand-name{color:var(--g1)}
+.brand-tag{font-size:.68rem;font-weight:300;letter-spacing:.07em;color:rgba(255,255,255,.78);transition:var(--trans)}
+.hdr.scrolled .brand-tag{color:var(--textl)}
+.nav ul{display:flex;align-items:center;gap:4px}
+.nav a{font-size:.88rem;font-weight:600;color:rgba(255,255,255,.9);padding:8px 14px;border-radius:50px;transition:var(--trans)}
+.nav a:hover{background:rgba(255,255,255,.18)}.hdr.scrolled .nav a{color:var(--textm)}.hdr.scrolled .nav a:hover{background:var(--g7);color:var(--g1)}
+.nav-cta{background:var(--white)!important;color:var(--g1)!important}.hdr.scrolled .nav-cta{background:var(--g2)!important;color:var(--white)!important}
+.hbtn{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+.hbtn span{width:24px;height:2px;background:var(--white);border-radius:2px;transition:var(--trans);display:block}
+.hdr.scrolled .hbtn span{background:var(--g1)}.hbtn.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}.hbtn.open span:nth-child(2){opacity:0}.hbtn.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(145deg,var(--g1) 0%,#122808 38%,#2a5510 68%,var(--g3) 100%)}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 15% 85%,rgba(106,184,58,.18) 0%,transparent 55%),radial-gradient(ellipse at 85% 15%,rgba(200,160,48,.12) 0%,transparent 45%);pointer-events:none}
+.hero-c{position:relative;z-index:1;padding-top:110px;padding-bottom:80px;max-width:660px}
+.hero-eye{font-size:.78rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--g5);margin-bottom:18px;animation:fu .8s ease both}
+.hero-h{font-family:var(--ff);font-size:clamp(2.8rem,5.5vw,4.6rem);font-weight:900;color:var(--white);line-height:1.06;margin-bottom:22px;animation:fu .8s .14s ease both}
+.hero-h em{font-style:italic;color:var(--g5)}
+.hero-sub{font-size:1.08rem;font-weight:300;color:rgba(255,255,255,.82);max-width:500px;margin-bottom:36px;animation:fu .8s .28s ease both}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px;animation:fu .8s .42s ease both}
+.hero-wave{position:absolute;bottom:-1px;left:0;right:0;line-height:0}.hero-wave svg{width:100%;height:70px}
+@keyframes fu{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.services-sec{background:var(--cream)}
+.srv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:22px}
+.srv-card{background:var(--white);border-radius:var(--r);padding:32px 26px;box-shadow:var(--shadowl);border:1px solid rgba(74,140,37,.10);transition:var(--trans);opacity:0;transform:translateY(24px)}
+.srv-card.vis{opacity:1;transform:none}.srv-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--g5)}
+.srv-icon{font-size:2rem;margin-bottom:18px;display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;background:var(--g7);border-radius:14px}
+.srv-card h3{font-family:var(--ff);font-size:1.18rem;color:var(--g1);margin-bottom:8px}.srv-card p{color:var(--textm);font-size:.93rem;line-height:1.63}
+.about-sec{background:var(--white)}
+.abt-in{display:grid;grid-template-columns:1fr 1.1fr;gap:72px;align-items:center}
+.abt-vis{position:relative;opacity:0;transform:translateX(-24px);transition:var(--trans) .1s}.abt-vis.vis{opacity:1;transform:none}
+.abt-frame{border-radius:var(--r);overflow:hidden;aspect-ratio:4/5;box-shadow:0 16px 52px rgba(26,58,10,.20)}
+.abt-frame img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.abt-badge{position:absolute;bottom:-20px;right:-20px;background:var(--g1);color:var(--white);border-radius:var(--r);padding:20px 26px;text-align:center;box-shadow:var(--shadow)}
+.abt-badge strong{display:block;font-family:var(--ff);font-size:2.2rem;font-weight:900;color:var(--g5);line-height:1}
+.abt-badge span{font-size:.72rem;font-weight:700;letter-spacing:.05em;opacity:.85}
+.abt-txt{opacity:0;transform:translateX(24px);transition:var(--trans) .15s}.abt-txt.vis{opacity:1;transform:none}
+.abt-txt p{color:var(--textm);margin-bottom:14px;font-size:.98rem}
+.abt-list{margin:20px 0 28px;display:flex;flex-direction:column;gap:9px}.abt-list li{font-size:.93rem;color:var(--textm)}
+.gal-sec{background:var(--cream)}
+.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.gal-item{border-radius:var(--r);overflow:hidden;aspect-ratio:1;cursor:pointer;box-shadow:var(--shadowl);transition:var(--trans);opacity:0;transform:translateY(20px)}
+.gal-item.vis{opacity:1;transform:none}.gal-item:hover{transform:scale(1.03);box-shadow:var(--shadow)}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:var(--trans)}.gal-item:hover img{transform:scale(1.05)}
+.gal-ph{width:100%;height:100%;background:linear-gradient(135deg,var(--g7),#c0e490);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.gal-ph .gi{font-size:2.4rem}.gal-ph span{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--textm)}
+.contact-sec{background:linear-gradient(158deg,var(--g1) 0%,#1c480e 100%);position:relative;overflow:hidden}
+.contact-sec::before{content:'';position:absolute;top:-100px;right:-100px;width:360px;height:360px;background:radial-gradient(circle,rgba(106,184,58,.16) 0%,transparent 70%);pointer-events:none}
+.cnt-in{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.cnt-info{opacity:0;transform:translateY(24px);transition:var(--trans)}.cnt-info.vis{opacity:1;transform:none}
+.cnt-info .lbl{color:var(--g5)}.cnt-info .stitle{color:var(--white)}.cnt-info>p{color:rgba(255,255,255,.72);margin-bottom:32px;font-size:.97rem}
+.cnt-list{display:flex;flex-direction:column;gap:20px}.cnt-list li{display:flex;align-items:flex-start;gap:14px}
+.c-ico{font-size:1.3rem;flex-shrink:0;margin-top:2px}
+.cnt-list strong{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--g5);margin-bottom:2px}
+.cnt-list a,.cnt-list s2{color:rgba(255,255,255,.88);font-size:.97rem;transition:var(--trans)}.cnt-list a:hover{color:var(--g5)}
+.cnt-form-w{background:var(--white);border-radius:var(--r);padding:40px 36px;box-shadow:0 16px 52px rgba(26,58,10,.22);opacity:0;transform:translateY(24px);transition:var(--trans) .15s}.cnt-form-w.vis{opacity:1;transform:none}
+.cnt-form h3{font-family:var(--ff);font-size:1.4rem;color:var(--g1);margin-bottom:24px}
+.fg{margin-bottom:18px}.fg label{display:block;font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--textm);margin-bottom:5px}
+.fg input,.fg select,.fg textarea{width:100%;padding:12px 15px;border:1.5px solid #cce0b0;border-radius:var(--rs);font-family:var(--fb);font-size:.93rem;color:var(--text);background:var(--cream);transition:var(--trans);outline:none;appearance:none}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--g3);background:var(--white);box-shadow:0 0 0 3px rgba(74,140,37,.11)}
+.fg textarea{resize:vertical;min-height:100px}.form-note{text-align:center;font-size:.76rem;color:var(--textl);margin-top:10px}
+.ftr{background:#111e08;padding:60px 0 0}
+.ftr-in{display:grid;grid-template-columns:2fr 1fr 1fr;gap:44px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.09)}
+.ftr-brand{display:flex;flex-direction:column;gap:14px}.ftr-logo{width:62px;height:62px;object-fit:contain;border-radius:50%;background:var(--white)}
+.ftr-brand p{color:rgba(255,255,255,.52);font-size:.88rem;line-height:1.6}
+.ftr-col h4{font-family:var(--ff);font-size:.98rem;color:var(--white);margin-bottom:18px}
+.ftr-col ul{display:flex;flex-direction:column;gap:9px}.ftr-col a{color:rgba(255,255,255,.54);font-size:.88rem;transition:var(--trans)}.ftr-col a:hover{color:var(--g5)}
+.ftr-col p{color:rgba(255,255,255,.54);font-size:.88rem;margin-bottom:7px}
+.ftr-btm{padding:18px 0;text-align:center}.ftr-btm p{color:rgba(255,255,255,.3);font-size:.78rem}
+.wa-float{position:fixed;bottom:26px;right:26px;z-index:999;width:58px;height:58px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 22px rgba(37,211,102,.50);transition:var(--trans);color:var(--white)}
+.wa-float:hover{transform:scale(1.12)}.wa-float::before{content:'';position:absolute;inset:-6px;border-radius:50%;border:3px solid rgba(37,211,102,.42);animation:pulse 2.4s ease infinite}
+.wa-tip{position:absolute;right:68px;background:#111;color:var(--white);font-size:.78rem;font-weight:700;padding:6px 11px;border-radius:6px;white-space:nowrap;opacity:0;pointer-events:none;transition:var(--trans)}.wa-float:hover .wa-tip{opacity:1}
+@keyframes pulse{0%{transform:scale(1);opacity:.7}70%{transform:scale(1.45);opacity:0}100%{transform:scale(1.45);opacity:0}}
+.nav-overlay{display:none;position:fixed;inset:0;background:rgba(14,36,6,.97);align-items:center;justify-content:center;z-index:900}
+.nav-overlay.open{display:flex}.nav-overlay ul{display:flex;flex-direction:column;gap:6px;text-align:center}
+.nav-overlay a{font-size:1.35rem;font-weight:700;color:rgba(255,255,255,.9);padding:14px 40px;border-radius:50px;transition:var(--trans)}.nav-overlay a:hover{background:rgba(255,255,255,.12)}
+.nav-cta2{background:var(--g2)!important;color:var(--white)!important}
+@media(max-width:900px){.hbtn{display:flex}.nav{display:none}.abt-in{grid-template-columns:1fr;gap:44px}.abt-badge{bottom:-12px;right:12px}.gal-grid{grid-template-columns:repeat(2,1fr)}.cnt-in{grid-template-columns:1fr;gap:44px}.ftr-in{grid-template-columns:1fr 1fr}.ftr-brand{grid-column:1/-1}}
+@media(max-width:560px){.sec{padding:60px 0}.hero-btns{flex-direction:column}.btn{width:100%;justify-content:center}.srv-grid{grid-template-columns:1fr}.gal-grid{grid-template-columns:1fr}.cnt-form-w{padding:24px 18px}.ftr-in{grid-template-columns:1fr}.wa-float{bottom:16px;right:16px;width:52px;height:52px}.abt-badge{position:static;margin-top:12px;display:inline-block}}
 </style>
 </head>
-
 <body>
 
-<!-- HEADER -->
 <header class="hdr" id="inicio">
-<div class="wrap hdr-in">
-<a href="#inicio" class="brand">
-<img src="logo.png" class="brand-logo">
-<span class="brand-name">Petrut Ciutuza</span>
-</a>
-
-<nav class="nav">
-<ul>
-<li><a href="#inicio">Inicio</a></li>
-<li><a href="#servicios">Servicios</a></li>
-<li><a href="#nosotros">Nosotros</a></li>
-<li><a href="#contacto" class="btn btn-p nav-cta">Contacto</a></li>
-</ul>
-</nav>
-</div>
+  <div class="wrap hdr-in">
+    <a href="#inicio" class="brand" onclick="closeNav()">
+      <img src="logo.png" alt="Logo" class="brand-logo" onerror="this.style.display='none'"/>
+      <div><span class="brand-name" style="display:block">Petrut Ciutuza</span><span class="brand-tag">Jardinería y Servicios Integrales</span></div>
+    </a>
+    <button class="hbtn" id="hbtn" aria-label="Menú" onclick="toggleNav()"><span></span><span></span><span></span></button>
+    <nav class="nav"><ul>
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#contacto" class="btn btn-p nav-cta">Contacto</a></li>
+    </ul></nav>
+  </div>
 </header>
 
-<!-- HERO -->
+<div class="nav-overlay" id="navOverlay"><ul>
+  <li><a href="#inicio" onclick="closeNav()">Inicio</a></li>
+  <li><a href="#servicios" onclick="closeNav()">Servicios</a></li>
+  <li><a href="#nosotros" onclick="closeNav()">Nosotros</a></li>
+  <li><a href="#galeria" onclick="closeNav()">Galería</a></li>
+  <li><a href="#contacto" onclick="closeNav()" class="nav-cta2">Contacto</a></li>
+</ul></div>
+
 <section class="hero">
-<div class="wrap hero-c">
-<h1 class="hero-h">Petrut Ciutuza</h1>
-<p class="hero-sub">Jardinería y Servicios Integrales</p>
-</div>
+  <div class="wrap hero-c">
+    <p class="hero-eye">🌿 Galapagar · Madrid</p>
+    <h1 class="hero-h">Tu jardín,<br/><em>nuestra pasión</em></h1>
+    <p class="hero-sub">Diseño, mantenimiento y servicios integrales de jardinería para hogares y empresas en la Sierra de Madrid.</p>
+    <div class="hero-btns">
+      <a href="#contacto" class="btn btn-p">Solicitar presupuesto</a>
+      <a href="#servicios" class="btn btn-o">Ver servicios</a>
+    </div>
+  </div>
+  <div class="hero-wave"><svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,35 C480,70 960,0 1440,35 L1440,70 L0,70 Z" fill="#f7faf2"/></svg></div>
 </section>
 
-<!-- SERVICIOS -->
 <section class="sec services-sec" id="servicios">
-<div class="wrap">
-<h2 class="stitle">Servicios</h2>
-</div>
+  <div class="wrap">
+    <p class="lbl">Lo que hacemos</p>
+    <h2 class="stitle">Nuestros Servicios</h2>
+    <p class="sdesc">Soluciones completas para que tu espacio verde luzca siempre impecable.</p>
+    <div class="srv-grid">
+      <div class="srv-card"><div class="srv-icon">🌳</div><h3>Poda y Tala</h3><p>Poda profesional de árboles, arbustos y setos. Tala controlada con total seguridad y limpieza posterior.</p></div>
+      <div class="srv-card"><div class="srv-icon">🌱</div><h3>Diseño de Jardines</h3><p>Creamos jardines a medida adaptados a tu espacio, estilo y necesidades, con plantas de temporada y perennes.</p></div>
+      <div class="srv-card"><div class="srv-icon">🔧</div><h3>Mantenimiento Integral</h3><p>Contratos periódicos: corte de césped, abonado, tratamientos fitosanitarios y control de riego.</p></div>
+      <div class="srv-card"><div class="srv-icon">💧</div><h3>Sistemas de Riego</h3><p>Instalación y programación de riego automático, eficiente y adaptado a cada tipo de jardín.</p></div>
+      <div class="srv-card"><div class="srv-icon">🪨</div><h3>Obras y Paisajismo</h3><p>Pérgolas, muros de piedra, caminos, terrazas y elementos decorativos para tus exteriores.</p></div>
+      <div class="srv-card"><div class="srv-icon">🌿</div><h3>Limpieza de Parcelas</h3><p>Desbroce, retirada de maleza y limpieza general de fincas, parcelas y zonas industriales.</p></div>
+    </div>
+  </div>
 </section>
 
-<!-- NOSOTROS -->
 <section class="sec about-sec" id="nosotros">
-<div class="wrap abt-in">
-<div class="abt-frame">
-<img src="foto_petrut.jpg" alt="Petrut Ciutuza en acción">
-</div>
-</div>
+  <div class="wrap abt-in">
+    <div class="abt-vis">
+      <div class="abt-frame">
+        <!-- Save your photo as "foto_petrut.jpg" in the same folder as index.html -->
+        <img src="foto_petrut.jpg" alt="Petrut Ciutuza en acción"/>
+      </div>
+      <div class="abt-badge"><strong>+10</strong><span>años de experiencia</span></div>
+    </div>
+    <div class="abt-txt">
+      <p class="lbl">Quiénes somos</p>
+      <h2 class="stitle">Profesionales del verde en la Sierra de Madrid</h2>
+      <p>En <strong>Petrut Ciutuza Jardinería</strong> llevamos más de una década cuidando jardines particulares, comunidades y empresas en Galapagar y toda la comarca noroeste de Madrid.</p>
+      <p>Nuestro compromiso es la calidad, la puntualidad y el trato cercano. Cada proyecto lo abordamos con la misma ilusión que el primero, porque un jardín bien cuidado transforma la vida en el hogar.</p>
+      <ul class="abt-list">
+        <li>✅ Presupuesto gratuito y sin compromiso</li>
+        <li>✅ Equipo profesional con maquinaria propia</li>
+        <li>✅ Seguro de responsabilidad civil</li>
+        <li>✅ Atención personalizada y continua</li>
+      </ul>
+      <a href="#contacto" class="btn btn-p">Contáctanos hoy</a>
+    </div>
+  </div>
 </section>
 
-<!-- CONTACTO -->
 <section class="sec contact-sec" id="contacto">
-<div class="wrap">
-<h2 class="stitle">Contacto</h2>
-</div>
+  <div class="wrap cnt-in">
+    <div class="cnt-info">
+      <p class="lbl">Hablemos</p>
+      <h2 class="stitle">Solicita tu presupuesto</h2>
+      <p>Llámanos, escríbenos o visítanos. Estaremos encantados de asesorarte sin ningún compromiso.</p>
+      <ul class="cnt-list">
+        <li><span class="c-ico">📞</span><div><strong>Teléfono</strong><a href="tel:+34654771123">+34 654 771 123</a></div></li>
+        <li><span class="c-ico">📧</span><div><strong>Email</strong><a href="mailto:pciutuza@gmail.com">pciutuza@gmail.com</a></div></li>
+        <li><span class="c-ico">📍</span><div><strong>Ubicación</strong><s2>Galapagar, Madrid</s2></div></li>
+      </ul>
+      <a href="https://wa.me/34654771123?text=Hola%2C%20me%20gustar%C3%ADa%20solicitar%20un%20presupuesto." class="btn btn-w" target="_blank" rel="noopener" style="margin-top:28px">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+    <div class="cnt-form-w">
+      <form onsubmit="sendForm(event)">
+        <h3>Envíanos un mensaje</h3>
+        <div class="fg"><label>Nombre</label><input type="text" placeholder="Tu nombre completo" required/></div>
+        <div class="fg"><label>Teléfono</label><input type="tel" placeholder="+34 654 771 123"/></div>
+        <div class="fg"><label>Email</label><input type="email" placeholder="tu@email.com" required/></div>
+        <div class="fg"><label>Servicio</label><select><option value="">Selecciona un servicio…</option><option>Poda y Tala</option><option>Diseño de Jardines</option><option>Mantenimiento Integral</option><option>Sistemas de Riego</option><option>Obras y Paisajismo</option><option>Limpieza de Parcelas</option><option>Otro</option></select></div>
+        <div class="fg"><label>Mensaje</label><textarea rows="4" placeholder="Cuéntanos qué necesitas…"></textarea></div>
+        <button type="submit" class="btn btn-p fw" id="sbtn">Enviar solicitud</button>
+        <p class="form-note">* Responderemos en menos de 24 horas.</p>
+      </form>
+    </div>
+  </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="ftr">
-<div class="wrap">
-<p>© Petrut Ciutuza</p>
-</div>
+  <div class="wrap ftr-in">
+    <div class="ftr-brand">
+      <img src="logo.png" alt="Logo" class="ftr-logo" onerror="this.style.display='none'"/>
+      <p>Jardinería y Servicios Integrales<br/>Galapagar · Madrid</p>
+    </div>
+    <div class="ftr-col"><h4>Navegación</h4><ul>
+      <li><a href="#inicio">Inicio</a></li><li><a href="#servicios">Servicios</a></li>
+      <li><a href="#nosotros">Nosotros</a></li><li><a href="#galeria">Galería</a></li><li><a href="#contacto">Contacto</a></li>
+    </ul></div>
+    <div class="ftr-col"><h4>Contacto</h4>
+      <p><a href="tel:+34654771123">+34 654 771 123</a></p>
+      <p><a href="mailto:pciutuza@gmail.com">pciutuza@gmail.com</a></p>
+      <p>Galapagar, 28260 Madrid</p>
+    </div>
+  </div>
+  <div class="ftr-btm"><p>© <span id="yr"></span> Petrut Ciutuza – Jardinería y Servicios Integrales. Todos los derechos reservados.</p></div>
 </footer>
 
+<a href="https://wa.me/34654771123?text=Hola%2C%20me%20gustar%C3%ADa%20solicitar%20un%20presupuesto." class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span class="wa-tip">¡Escríbenos!</span>
+</a>
+
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+function toggleNav(){const o=document.getElementById('navOverlay'),b=document.getElementById('hbtn');o.classList.toggle('open');b.classList.toggle('open');document.body.style.overflow=o.classList.contains('open')?'hidden':'';}
+function closeNav(){document.getElementById('navOverlay').classList.remove('open');document.getElementById('hbtn').classList.remove('open');document.body.style.overflow='';}
+window.addEventListener('scroll',()=>{document.querySelector('.hdr').classList.toggle('scrolled',scrollY>50)});
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})},{threshold:.12});
+document.querySelectorAll('.srv-card,.gal-item,.abt-vis,.abt-txt,.cnt-info,.cnt-form-w').forEach((el,i)=>{el.style.transitionDelay=(i%6*0.08)+'s';io.observe(el);});
+function sendForm(e){e.preventDefault();const b=document.getElementById('sbtn');b.textContent='¡Enviado! ✅';b.disabled=true;setTimeout(()=>{b.textContent='Enviar solicitud';b.disabled=false;e.target.reset();},3000);}
+</script>
 </body>
 </html>
