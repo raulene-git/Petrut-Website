@@ -286,22 +286,16 @@ function sendForm(e) {
   const mensaje = form.querySelector('textarea').value.trim();
 
   const texto =
-    "Hola, me gustaría solicitar un presupuesto.%0A%0A" +
-    "Nombre: " + encodeURIComponent(nombre || "-") + "%0A" +
-    "Teléfono: " + encodeURIComponent(telefono || "-") + "%0A" +
-    "Email: " + encodeURIComponent(email || "-") + "%0A" +
-    "Servicio: " + encodeURIComponent(servicio || "-") + "%0A" +
-    "Mensaje: " + encodeURIComponent(mensaje || "-");
+    `Hola, me gustaría solicitar un presupuesto.\n\n` +
+    `Nombre: ${nombre || '-'}\n` +
+    `Teléfono: ${telefono || '-'}\n` +
+    `Email: ${email || '-'}\n` +
+    `Servicio: ${servicio || '-'}\n` +
+    `Mensaje: ${mensaje || '-'}`;
 
   b.textContent = 'Abriendo WhatsApp...';
   b.disabled = true;
 
-  window.open("https://wa.me/34654771123?text=" + texto, "_blank");
-
-  setTimeout(() => {
-    b.textContent = 'Enviar solicitud';
-    b.disabled = false;
-    form.reset();
-  }, 1500);
+  window.location.href = `https://wa.me/34654771123?text=${encodeURIComponent(texto)}`;
 }
 </script>
